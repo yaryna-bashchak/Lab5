@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "Lab5.h"
+#include "MyEditor.h"
 
 #define MAX_LOADSTRING 100
 
@@ -10,6 +11,8 @@
 HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
+
+MyEditor Editor;
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -121,35 +124,83 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //  WM_DESTROY  - post a quit message and return
 //
 //
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_COMMAND:
-        {
-            int wmId = LOWORD(wParam);
-            // Parse the menu selections:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
-        }
+    case WM_CREATE:
+        Editor.OnCreate(hWnd, hInst);
+        break;
+    case WM_SIZE:
+        Editor.OnSize(hWnd);
+        break;
+    case WM_NOTIFY:
+        Editor.OnNotify(hWnd, wParam, lParam);
+        break;
+    case WM_LBUTTONDOWN:
+        Editor.OnLBdown(hWnd);
+        break;
+    case WM_LBUTTONUP:
+        Editor.OnLBup(hWnd);
+        break;
+    case WM_MOUSEMOVE:
+        Editor.OnMouseMove(hWnd);
         break;
     case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: Add any drawing code that uses hdc here...
-            EndPaint(hWnd, &ps);
-        }
+        Editor.OnPaint(hWnd);
         break;
+    case WM_INITMENUPOPUP:
+        Editor.OnInitMenuPopup(hWnd, wParam);
+        break;
+    case WM_COMMAND:
+    {
+        int wmId = LOWORD(wParam);
+        int wmEvent = HIWORD(wParam);
+        // Parse the menu selections:
+        switch (wmId)
+        {
+        case ID_TOOL_POINT:
+        case IDM_POINT:
+            Editor.Start(hWnd, new Point);
+            break;
+
+        case ID_TOOL_LINE:
+        case IDM_LINE:
+            Editor.Start(hWnd, new Line);
+            break;
+
+        case ID_TOOL_RECT:
+        case IDM_RECT:
+            Editor.Start(hWnd, new Rect);
+            break;
+
+        case ID_TOOL_ELLIPSE:
+        case IDM_ELLIPSE:
+            Editor.Start(hWnd, new Elipse);
+            break;
+
+        case ID_TOOL_OLINEO:
+        case IDM_OLINEO:
+            Editor.Start(hWnd, new OLineO);
+            break;
+
+        case ID_TOOL_CUBE:
+        case IDM_CUBE:
+            Editor.Start(hWnd, new Cube);
+            break;
+
+        case IDM_ABOUT:
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+            break;
+        case IDM_EXIT:
+            DestroyWindow(hWnd);
+            break;
+        default:
+            return DefWindowProc(hWnd, message, wParam, lParam);
+        }
+    }
+    break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
