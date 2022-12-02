@@ -30,6 +30,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
+    InitCommonControls();
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -189,6 +190,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         case ID_TOOL_CUBE:
         case IDM_CUBE:
             Editor.Start(hWnd, new Cube);
+            break;
+
+        case IDM_TABLE:
             break;
 
         case IDM_ABOUT:
