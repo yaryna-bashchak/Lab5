@@ -39,6 +39,12 @@
     <ClInclude Include="Toolbar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Lab5.cpp">
@@ -53,9 +59,15 @@
     <ClCompile Include="Toolbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Lab5.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="MyTable.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

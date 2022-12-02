@@ -130,7 +130,9 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Lab5.h" />
     <ClInclude Include="MyEditor.h" />
+    <ClInclude Include="MyTable.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="shapes.h" />
     <ClInclude Include="targetver.h" />
@@ -139,11 +141,13 @@
   <ItemGroup>
     <ClCompile Include="Lab5.cpp" />
     <ClCompile Include="MyEditor.cpp" />
+    <ClCompile Include="MyTable.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Toolbar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Lab5.rc" />
+    <ResourceCompile Include="MyTable.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bitmap1.bmp" />

@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "Lab5.h"
 #include "MyEditor.h"
+#include "MyTable.h"
 
 #define MAX_LOADSTRING 100
 
