@@ -130,6 +130,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="Lab5.h" />
     <ClInclude Include="MyEditor.h" />
+    <ClInclude Include="MyTable.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="shapes.h" />
@@ -139,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="Lab5.cpp" />
     <ClCompile Include="MyEditor.cpp" />
+    <ClCompile Include="MyTable.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Toolbar.cpp" />
   </ItemGroup>
