@@ -132,6 +132,7 @@
     <ClInclude Include="MyEditor.h" />
     <ClInclude Include="MyTable.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="resource1.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="shapes.h" />
     <ClInclude Include="targetver.h" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Lab5.rc" />
+    <ResourceCompile Include="MyTable.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="bitmap1.bmp" />
