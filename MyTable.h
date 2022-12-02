@@ -1,6 +1,5 @@
 #pragma once
 #include "framework.h"
-
 class MyTable
 {
 private:
@@ -10,3 +9,5 @@ public:
     int Run(HWND hwndParent, int id);
     INT_PTR CALLBACK DlgWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 };
+
+extern void WorkTable(HWND hWnd);

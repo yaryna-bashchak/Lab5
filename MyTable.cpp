@@ -1,4 +1,5 @@
 #include "MyTable.h"
+#include "resource1.h"
 
 static MyTable* pdlg = NULL;
 
@@ -13,7 +14,7 @@ INT_PTR MyTable::DlgWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
     switch (message)
     {
     case WM_INITDIALOG:
-        OnInit(hDlg);
+        if(pdlg) pdlg->OnInit(hDlg);
         return (INT_PTR)TRUE;
     case WM_COMMAND:
         if (LOWORD(wParam) == IDCANCEL)
@@ -21,7 +22,7 @@ INT_PTR MyTable::DlgWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
             EndDialog(hDlg, IDCANCEL);
             break;
         }
-        OnCommand(hDlg, wParam, lParam);
+        if(pdlg) pdlg->OnCommand(hDlg, wParam, lParam);
         break;
     }
     return (INT_PTR)FALSE;
@@ -29,7 +30,9 @@ INT_PTR MyTable::DlgWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 
 void MyTable::OnInit(HWND hDlg)
 {
-
+    SendDlgItemMessage(hDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)L"²À-01");
+    SendDlgItemMessage(hDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)L"²À-02");
+    SendDlgItemMessage(hDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)L"²À-03");
 }
 
 void MyTable::OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
@@ -39,7 +42,18 @@ void MyTable::OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
 
 int MyTable::Run(HWND hwndParent, int id)
 {
-
+    pdlg = this;
     return DialogBox((HINSTANCE)GetWindowLongPtr(hwndParent, GWLP_HINSTANCE),
         MAKEINTRESOURCE(id), hwndParent, CalledWndProc);
+}
+
+void WorkTable(HWND hWnd)
+{
+    MyTable* pt;
+    pt = new MyTable;
+    if (pt)
+    {
+        pt->Run(hWnd, IDD_TABLE);
+        delete pt;
+    }
 }
