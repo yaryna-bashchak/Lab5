@@ -16,6 +16,9 @@ INT_PTR MyTable::DlgWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
     case WM_INITDIALOG:
         if(pdlg) pdlg->OnInit(hDlg);
         return (INT_PTR)TRUE;
+    case WM_SYSCOMMAND:
+        if (wParam == SC_CLOSE) DestroyWindow(hDlg);
+        break;
     case WM_COMMAND:
         if (LOWORD(wParam) == IDCANCEL)
         {
@@ -24,6 +27,10 @@ INT_PTR MyTable::DlgWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
         }
         if(pdlg) pdlg->OnCommand(hDlg, wParam, lParam);
         break;
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        break;
+    default: break;
     }
     return (INT_PTR)FALSE;
 }
@@ -37,14 +44,22 @@ void MyTable::OnInit(HWND hDlg)
 
 void MyTable::OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
 {
-
+    switch (LOWORD(wParam))
+    {
+    case IDOK:
+        EndDialog(hDlg, IDOK);
+        break;
+    default:
+        break;
+    }
 }
 
-int MyTable::Run(HWND hwndParent, int id)
+void MyTable::Run(HWND hwndParent, int id)
 {
     pdlg = this;
-    return DialogBox((HINSTANCE)GetWindowLongPtr(hwndParent, GWLP_HINSTANCE),
+    hWndDlg = CreateDialog((HINSTANCE)GetWindowLongPtr(hwndParent, GWLP_HINSTANCE),
         MAKEINTRESOURCE(id), hwndParent, CalledWndProc);
+    ShowWindow(hWndDlg, 1);
 }
 
 void WorkTable(HWND hWnd)
