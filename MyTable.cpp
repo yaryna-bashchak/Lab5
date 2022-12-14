@@ -1,6 +1,5 @@
 #include "MyTable.h"
 #include "resource1.h"
-#include <string>
 
 MyTable* pDlg;
 
@@ -45,6 +44,13 @@ void MyTable::OnCreate(HWND hwndParent)
     hWndDlg = CreateDialog((HINSTANCE)GetWindowLongPtr(hwndParent, GWLP_HINSTANCE),
         MAKEINTRESOURCE(IDD_TABLE), hwndParent, CalledWndProc);
 
+    wstring line = L"Назва\tx1\ty1\tx2\ty2";
+    Add(line);
+    //SendDlgItemMessage(hWndDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)line.c_str());
+    /*wchar_t buffer[40] = L"first";
+    const wchar_t* string = L"   second ";
+    wcsncat_s(buffer, string, 41);
+    SendDlgItemMessage(hWndDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)buffer);*/
 }
 
 void MyTable::OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
@@ -59,12 +65,17 @@ void MyTable::OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
     }
 }
 
-void MyTable::Add(HWND hDlg, WCHAR* p, long x1, long y1, long x2, long y2)
+void MyTable::Add(wstring line)
 {
-    static WCHAR* ptext;
-    ptext = p;
-    SendDlgItemMessage(hDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)ptext);
+    SendDlgItemMessage(hWndDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)((wstring)line).c_str());
 }
+
+wstring MyTable::ConnectToLine(string name, long x1, long y1, long x2, long y2)
+{
+    WCHAR line[256];
+    swprintf_s(line, 256, L"%s\t%d\t%d\t%d\t%d", name.c_str(), x1, y1, x2, y2);
+    return line;
+};
 
 void MyTable::Show()
 {
