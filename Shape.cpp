@@ -78,7 +78,7 @@ wstring Shape::ConnectToLine()
 	wstring name = getName();
 
 	wstring tabs;
-	int n = 2 - (INT)(name.length() / 8);
+	int n = 3 - (INT)(name.length() / 8);
 	for (int i = 0; i < n; i++)
 		tabs += L"\t";
 

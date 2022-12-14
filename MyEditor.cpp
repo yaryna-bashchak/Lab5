@@ -92,5 +92,3 @@ void MyEditor::OnSize(HWND hWnd) {
 void MyEditor::OnNotify(HWND hWnd, WPARAM wParam, LPARAM lParam) {
 	ToolBar.OnNotify(hWnd, wParam, lParam);
 };
-
-//Shape* MyEditor::GetPcshape() { return *pcshape; }

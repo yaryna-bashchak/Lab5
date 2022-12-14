@@ -1,5 +1,8 @@
 #include "MyTable.h"
 #include "resource1.h"
+#include <iostream>
+#include <fstream>
+#include <codecvt>
 
 MyTable* pDlg;
 
@@ -41,7 +44,11 @@ void MyTable::OnCreate(HWND hwndParent)
     hWndDlg = CreateDialog((HINSTANCE)GetWindowLongPtr(hwndParent, GWLP_HINSTANCE),
         MAKEINTRESOURCE(IDD_TABLE), hwndParent, CalledWndProc);
 
-    wstring line = L"Назва\t\tx1\ty1\tx2\ty2";
+
+    ofstream file;
+    file.open("Table.txt");
+    file.close();
+    wstring line = L"Назва\t\t\tx1\ty1\tx2\ty2";
     Add(line);
 }
 
@@ -59,6 +66,14 @@ void MyTable::OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
 
 void MyTable::Add(wstring line)
 {
+    wstring_convert<codecvt_utf8<wchar_t>, wchar_t> convert;
+
+    fstream file;
+    file.open ("Table.txt", fstream::app);
+    auto str = line.c_str();
+    file << convert.to_bytes(line) << endl;
+    file.close();
+
     SendDlgItemMessage(hWndDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)line.c_str());
 }
 
