@@ -14,7 +14,6 @@ INT_PTR MyTable::DlgWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
     switch (message)
     {
     case WM_INITDIALOG:
-        //if(pdlg) pdlg->OnInit(hWnd, hDlg);
         return (INT_PTR)TRUE;
     case WM_SYSCOMMAND:
         if (wParam == SC_CLOSE) DestroyWindow(hDlg);
@@ -44,7 +43,7 @@ void MyTable::OnCreate(HWND hwndParent)
     hWndDlg = CreateDialog((HINSTANCE)GetWindowLongPtr(hwndParent, GWLP_HINSTANCE),
         MAKEINTRESOURCE(IDD_TABLE), hwndParent, CalledWndProc);
 
-    wstring line = L"Назва\tx1\ty1\tx2\ty2";
+    wstring line = L"Назва\t\tx1\ty1\tx2\ty2";
     Add(line);
     //SendDlgItemMessage(hWndDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)line.c_str());
     /*wchar_t buffer[40] = L"first";
@@ -67,7 +66,7 @@ void MyTable::OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
 
 void MyTable::Add(wstring line)
 {
-    SendDlgItemMessage(hWndDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)((wstring)line).c_str());
+    SendDlgItemMessage(hWndDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)line.c_str());
 }
 
 void MyTable::Show()
