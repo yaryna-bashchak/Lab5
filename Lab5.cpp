@@ -14,6 +14,8 @@ WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 MyEditor Editor;
+MyTable* pdlg = new MyTable;
+
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -135,6 +137,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
         Editor.OnCreate(hWnd, hInst);
+        pdlg->OnCreate(hWnd);
         break;
     case WM_SIZE:
         Editor.OnSize(hWnd);
@@ -195,7 +198,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
 
         case IDM_TABLE:
-            WorkTable(hWnd);
+            pdlg->Show();
             break;
 
         case IDM_ABOUT:
