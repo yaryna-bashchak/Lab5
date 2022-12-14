@@ -59,6 +59,9 @@ void MyTable::OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam)
     case IDOK:
         EndDialog(hDlg, IDOK);
         break;
+    case IDCANCEL:
+        ShowWindow(hDlg, SW_HIDE);
+        break;
     default:
         break;
     }
