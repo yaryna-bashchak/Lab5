@@ -36,7 +36,6 @@ INT_PTR MyTable::DlgWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPara
 
 void MyTable::OnCreate(HWND hwndParent)
 {
-    pdlg = this;
     pDlg = this;
     hWndParent = hwndParent;
     hWndDlg = CreateDialog((HINSTANCE)GetWindowLongPtr(hwndParent, GWLP_HINSTANCE),

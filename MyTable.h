@@ -9,7 +9,6 @@ class MyTable
 private:
     HWND hWndDlg;
     HWND hWndParent;
-    MyTable* pdlg;
     void OnCommand(HWND hDlg, WPARAM wParam, LPARAM lParam);
 public:
     void Show();
