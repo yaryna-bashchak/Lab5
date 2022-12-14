@@ -1,6 +1,5 @@
 #pragma once
 #include "framework.h"
-#include "Shape.h"
 #include <string>
 
 using namespace std;
@@ -18,4 +17,3 @@ public:
     void Add(wstring line);
     INT_PTR CALLBACK DlgWndProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
 };
-//extern void WorkTable(HWND hWnd, HWND hDlg, int id);
