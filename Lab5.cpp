@@ -15,6 +15,7 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
 MyEditor Editor;
 MyTable* pdlg = new MyTable;
+Shape* lastObject;
 
 
 // Forward declarations of functions included in this code module:
@@ -149,7 +150,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         Editor.OnLBdown(hWnd);
         break;
     case WM_LBUTTONUP:
-        pdlg->Add(Editor.OnLBup(hWnd)->ConnectToLine());
+        lastObject = Editor.OnLBup(hWnd);
+        if(lastObject)
+            pdlg->Add(lastObject->ConnectToLine());
         break;
     case WM_MOUSEMOVE:
         Editor.OnMouseMove(hWnd);
