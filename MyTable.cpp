@@ -70,13 +70,6 @@ void MyTable::Add(wstring line)
     SendDlgItemMessage(hWndDlg, IDC_LIST1, LB_ADDSTRING, 0, (LPARAM)((wstring)line).c_str());
 }
 
-wstring MyTable::ConnectToLine(string name, long x1, long y1, long x2, long y2)
-{
-    WCHAR line[256];
-    swprintf_s(line, 256, L"%s\t%d\t%d\t%d\t%d", name.c_str(), x1, y1, x2, y2);
-    return line;
-};
-
 void MyTable::Show()
 {
     ShowWindow(hWndDlg, 1);

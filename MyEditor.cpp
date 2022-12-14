@@ -26,7 +26,9 @@ void MyEditor::OnLBdown(HWND hWnd) {
 		pse->UpdateEnd(hWnd);
 	}
 };
-void MyEditor::OnLBup(HWND hWnd) {
+
+Shape* MyEditor::OnLBup(HWND hWnd)
+{
 	if (press && pse->isStarted())
 	{
 		pse->UpdateEnd(hWnd);
@@ -34,8 +36,11 @@ void MyEditor::OnLBup(HWND hWnd) {
 		InvalidateRect(hWnd, NULL, TRUE);
 		COUNT_OF_OBJECTS++;
 		pse->Set(0, 0, 0, 0);
+		return pcshape[COUNT_OF_OBJECTS - 1];
 	}
+	return NULL;
 };
+
 void MyEditor::OnMouseMove(HWND hWnd) {
 	if (press && pse->isStarted() && (typeid(*pse) != typeid(Point)))
 	{
@@ -87,3 +92,5 @@ void MyEditor::OnSize(HWND hWnd) {
 void MyEditor::OnNotify(HWND hWnd, WPARAM wParam, LPARAM lParam) {
 	ToolBar.OnNotify(hWnd, wParam, lParam);
 };
+
+//Shape* MyEditor::GetPcshape() { return *pcshape; }

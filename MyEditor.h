@@ -11,7 +11,7 @@ private:
 public:
 	void Start(HWND hWnd, Shape *);
 	void OnLBdown(HWND hWnd);
-	void OnLBup(HWND hWnd);
+	Shape* OnLBup(HWND hWnd);
 	void OnMouseMove(HWND hWnd);
 	void OnPaint(HWND hWnd);
 	void OnInitMenuPopup(HWND, WPARAM);

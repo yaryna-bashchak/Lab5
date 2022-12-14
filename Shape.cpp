@@ -70,3 +70,11 @@ void Shape::SelectPen(HDC hdc)
 	if (hBrush)
 		SelectObject(hdc, hBrush);
 }
+
+wstring Shape::ConnectToLine()
+{
+	WCHAR line[256];
+	wstring name = getName();
+	swprintf_s(line, 256, L"%s\t%d\t%d\t%d\t%d", name.c_str(), xs1, ys1, xs2, ys2);
+	return line;
+};

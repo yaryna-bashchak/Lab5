@@ -149,7 +149,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         Editor.OnLBdown(hWnd);
         break;
     case WM_LBUTTONUP:
-        Editor.OnLBup(hWnd);
+        pdlg->Add(Editor.OnLBup(hWnd)->ConnectToLine());
         break;
     case WM_MOUSEMOVE:
         Editor.OnMouseMove(hWnd);

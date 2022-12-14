@@ -1,5 +1,8 @@
 #pragma once
 #include "framework.h"
+#include <string>
+
+using namespace std;
 
 class Shape
 {
@@ -22,4 +25,6 @@ public:
 	virtual void SelectPen(HDC);
 	HPEN GetShadowPen() { return hShadowPen; };
 	void UpdateEnd(HWND hWnd);
+	wstring ConnectToLine();
+	virtual wstring getName() = 0;
 };
