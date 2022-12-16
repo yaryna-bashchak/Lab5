@@ -13,13 +13,18 @@ HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
-MyEditor Editor;
+MyEditor& Editor = Editor.getInstance();
+MyTable* pdlg = new MyTable;
+Shape* lastObject;
+
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+
+void ExitProg(HWND hWnd);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -133,6 +138,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
         Editor.OnCreate(hWnd, hInst);
+        pdlg->OnCreate(hWnd);
         break;
     case WM_SIZE:
         Editor.OnSize(hWnd);
@@ -144,7 +150,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         Editor.OnLBdown(hWnd);
         break;
     case WM_LBUTTONUP:
-        Editor.OnLBup(hWnd);
+        lastObject = Editor.OnLBup(hWnd);
+        if(lastObject)
+            pdlg->Add(lastObject->ConnectToLine());
         break;
     case WM_MOUSEMOVE:
         Editor.OnMouseMove(hWnd);
@@ -193,13 +201,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             break;
 
         case IDM_TABLE:
+            pdlg->Show();
             break;
 
         case IDM_ABOUT:
             DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
             break;
         case IDM_EXIT:
-            DestroyWindow(hWnd);
+            ExitProg(hWnd);
             break;
         default:
             return DefWindowProc(hWnd, message, wParam, lParam);
@@ -233,4 +242,9 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     }
     return (INT_PTR)FALSE;
+}
+
+void ExitProg(HWND hWnd)
+{
+    DestroyWindow(hWnd);
 }

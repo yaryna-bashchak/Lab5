@@ -27,6 +27,8 @@ public:
 	}
 
 	void SelectPen(HDC hdc) { SelectObject(hdc, hPen); }
+
+	wstring getName() { return L"Крапка"; }
 };
 
 ////////////////////////////////////////////////
@@ -51,6 +53,8 @@ public:
 	virtual void Show(HDC hdc) {
 		DrawLine(hdc, xs1, ys1, xs2, ys2);
 	}
+
+	wstring getName() { return L"Лінія"; }
 };
 
 ////////////////////////////////////////////////
@@ -75,6 +79,8 @@ public:
 	virtual void Show(HDC hdc) {
 		DrawRect(hdc, xs1, ys1, xs2, ys2);
 	}
+
+	wstring getName() { return L"Прямокутник"; }
 };
 
 /////////////////////////////////////////////////////
@@ -100,6 +106,8 @@ public:
 	{
 		DrawEllipse(hdc, 2 * xs1 - xs2, 2 * ys1 - ys2, xs2, ys2);
 	}
+
+	wstring getName() { return L"Еліпс"; }
 };
 
 /////////////////////////////////////////////////////
@@ -134,6 +142,8 @@ public:
 
 		Set(x1, y1, x2, y2);
 	}
+
+	wstring getName() { return L"Лінія з кругами"; }
 };
 
 class Cube : virtual public Rect, virtual public Line
@@ -176,4 +186,6 @@ public:
 
 		Set(x1, y1, x2, y2);
 	}
+
+	wstring getName() { return L"Каркас куба"; }
 };

@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include <regex>
 
 Shape::Shape() {}
 
@@ -70,3 +71,17 @@ void Shape::SelectPen(HDC hdc)
 	if (hBrush)
 		SelectObject(hdc, hBrush);
 }
+
+wstring Shape::ConnectToLine()
+{
+	WCHAR line[256];
+	wstring name = getName();
+
+	wstring tabs;
+	int n = 3 - (INT)(name.length() / 8);
+	for (int i = 0; i < n; i++)
+		tabs += L"\t";
+
+	swprintf_s(line, 256, L"%s%s%d\t%d\t%d\t%d", name.c_str(), tabs.c_str(), xs1, ys1, xs2, ys2);
+	return line;
+};
