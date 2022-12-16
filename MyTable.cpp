@@ -44,7 +44,6 @@ void MyTable::OnCreate(HWND hwndParent)
     hWndDlg = CreateDialog((HINSTANCE)GetWindowLongPtr(hwndParent, GWLP_HINSTANCE),
         MAKEINTRESOURCE(IDD_TABLE), hwndParent, CalledWndProc);
 
-
     ofstream file;
     file.open("Table.txt");
     file.close();
