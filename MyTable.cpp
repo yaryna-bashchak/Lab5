@@ -47,7 +47,7 @@ void MyTable::OnCreate(HWND hwndParent)
     ofstream file;
     file.open("Table.txt");
     file.close();
-    wstring line = L"Назва\t\t\tx1\ty1\tx2\ty2";
+    wstring line = L"пїЅпїЅпїЅпїЅпїЅ\t\t\tx1\ty1\tx2\ty2";
     Add(line);
 }
 
